@@ -1,8 +1,8 @@
 <?php
-		      return array (
-  'admin_password' => 'aaaaaa',
+return array (
+  'admin_password' => 'kingsoft',
   'db_user' => 'root',
-  'db_password' => '',
+  'db_password' => 'root',
   'db_name' => 'btc',
   'db_host' => 'localhost',
   'btc_protocol' => 'http',

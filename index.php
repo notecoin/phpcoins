@@ -1,5 +1,5 @@
 <?php
-define('DEV',0);
+define('DEV',1);
 DEV || error_reporting(0);
 @session_start();
 define('ROOT',dirname(__FILE__));

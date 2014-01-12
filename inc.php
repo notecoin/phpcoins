@@ -479,7 +479,7 @@ function url($act,$arg=[]){
     $act = ACT;
   }
   ADMIN && ($arg['admin'] = 1);
-  return $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/?'. http_build_query(array_merge(['act'=>$act],$arg));
+  return 'http://'.$_SERVER['HTTP_HOST'].'/?'. http_build_query(array_merge(['act'=>$act],$arg));
 }
 
 function form_text($arg){
