@@ -1,40 +1,42 @@
-PHPCoins��Դ���رҽ���ƽ̨ϵͳ
+PHPCoins开源比特币交易平台系统V1.0发布
 
-----��������-----
+PHPCoins开源比特币交易平台系统V1.0发布
 
-���ر�ת��ת��
+----功能特性-----
 
-Ǯ���Զ�����
+比特币转入转出
 
-����ҳ�ֵ����
+钱包自动生成
 
-���ر�����
+人民币充值提现
 
-ʵʱ�ҵ��б�
+比特币买卖
 
-ʵʱ�����б�
+实时挂单列表
 
-ʵʱK��ͼ
+实时交易列表
 
-Google˫����֤
+实时K线图
 
-֧��SSL
+Google双重验证
+
+支持SSL
 
 
------��װ��Ҫ--------
+-----安装需要--------
 
-Linux 2.6+��Apache 2.4+��Mysql 5.6+, PHP 5.5+
+Linux 2.6+，Apache 2.4+，Mysql 5.6+, PHP 5.5+
 
-PDO��չ
+PDO扩展
 
-GD��չ
+GD扩展
 
 Bitcoind 0.8+
 
 
------��װ����---------
+-----安装步骤---------
 
-Ubuntu��װbitcoind
+Ubuntu安装bitcoind
 
 $ sudo add-apt-repository ppa:bitcoin/bitcoin
 
@@ -42,82 +44,83 @@ $ sudo apt-get update
 
 $ sudo apt-get install bitcoin
 
-���� /usr/share/doc/bitcoind/examples/bitcoin.conf �� HomeĿ¼/.bitcoin/bitcoin.conf
+复制 /usr/share/doc/bitcoind/examples/bitcoin.conf 到 Home目录/.bitcoin/bitcoin.conf
 
-����
+设置
 
-testnet = 1  (��������ʽ���ر����磬ֻʹ�ñ��رҲ������磬����������������
+testnet = 1 (不连接正式比特币网络，只使用比特币测试网络，生产环境不开启）
 
-server=1    (�Է�������ʽ�������У����û�ע�ᣬת����رҶ���Ҫʹ��bitoind������������Ǯ��)
+server=1 (以服务器方式长期运行，新用户注册，转入比特币都需要使用bitoind服务器来管理钱包)
 
-rpcuser=root   (�û��������õ��û���Ҫ��PHPCoinsĿ¼��config.php�ļ��� btc_user= ��ͬ��
+rpcuser=root (用户名，设置的用户名要和PHPCoins目录下config.php文件的 btc_user= 相同）
 
-rpcpassword=aaa (���룬���õ�����Ҫ��PHPCoinsĿ¼��config.php�ļ��� btc_password= ��ͬ��
+rpcpassword=aaa (密码，设置的密码要和PHPCoins目录下config.php文件的 btc_password= 相同）
 
-rpcport=18332    (�˿ڣ������������18332����ʽ�������8332�����õ�ֵҪ��PHPCoinsĿ¼��config.php�ļ��� btc_port= ��ͬ��
+rpcport=18332 (端口，测试网络的是18332，正式网络的是8332，设置的值要和PHPCoins目录下config.php文件的 btc_port= 相同）
 
-rpcconnect=127.0.0.1  (���������õ�ֵҪ��PHPCoinsĿ¼��config.php�ļ��� btc_host= ��ͬ��
-
-
-Apache,PHP,Mysql��װʡ�ԣ���Ҫע�����PHP�İ汾ΪPHP5.5���ϣ���������������
+rpcconnect=127.0.0.1 (主机，设置的值要和PHPCoins目录下config.php文件的 btc_host= 相同）
 
 
-
---------Ǯ������-----------
-
-��洢��ʽ�����㹻�����ı��رҵ�ַ�أ��ѵ�ַ���뵽bitcoind������Ŀ¼��ÿ������ע���û�����ӵ�ַ����ȡһ����ַ��Ϊ�û�ת����رҵĵ�ַ
-
-
---------PHPCoins��װ--------
-
-����Դ���ϴ���Web��Ŀ¼����ѹ��������Ŀ¼Ȩ��Ϊ����PHP���̶�д������config.php�ļ���Ĳ�����
-
-admin_password Ϊ��̨��¼����
-
-db_user Ϊ���ݿ��û���
-
-db_password Ϊ���ݿ�����
-
-db_name Ϊ���ݿ��� 
-
-db_host Ϊ���ݿ����ڵ�����
-
-btc_protocol Ϊ���رҷ�����bitcoindЭ���ѡ http �� https
-
-btc_user Ϊbitcoind���û���
-
-btc_password Ϊbitcoind������
-
-btc_host Ϊbitcoind���ڵ�����
-
-btc_port Ϊbitcoind�Ķ˿�
-
-text_logo Ϊ����LOGO
-
-site_name Ϊ��վ��
-
-smtp_host ΪSMTP��������
-
-smtp_port ΪSMTP����˿�
-
-smtp_user ΪSMTP�����ʺ�
-
-smtp_password ΪSMTP��������
-
-
-�½�������д�� db_name ���ݿ⣬�����������վ���Զ���װ����̨�ĵ�ַΪ ����/?admin=1
-
-�����Ҫ���°�װ��ɾ����Ŀ¼�µ�install.lock�ļ�
-
-------------����-----------
-
-����QQȺ���� 53023431
+Apache,PHP,Mysql安装省略，需要注意的是PHP的版本为PHP5.5以上，否则不能正常工作
 
 
 
+--------钱包部署-----------
+
+冷存储方式生成足够数量的比特币地址池，把地址导入到bitcoind的数据目录，每次有新注册用户都会从地址池里取一个地址作为用户转入比特币的地址
 
 
+--------PHPCoins安装--------
+
+下载源码上传到Web主目录，解压，设置主目录权限为允许PHP进程读写，设置config.php文件里的参数，
+
+admin_password 为后台登录密码
+
+db_user 为数据库用户名
+
+db_password 为数据库密码
+
+db_name 为数据库名 
+
+db_host 为数据库所在的主机
+
+btc_protocol 为比特币服务器bitcoind协议可选 http 和 https
+
+btc_user 为bitcoind的用户名
+
+btc_password 为bitcoind的密码
+
+btc_host 为bitcoind所在的主机
+
+btc_port 为bitcoind的端口
+
+text_logo 为文字LOGO
+
+site_name 为网站名
+
+smtp_host 为SMTP邮箱域名
+
+smtp_port 为SMTP邮箱端口
+
+smtp_user 为SMTP邮箱帐号
+
+smtp_password 为SMTP邮箱密码
 
 
+新建上面填写的 db_name 数据库，在浏览器打开网站会自动安装，后台的地址为 域名/?admin=1
+
+如果需要重新安装先删除根目录下的install.lock文件
+
+------------其他-----------
+
+加入QQ群交流 53023431
 
 
+------------下载------------
+
+http://phpcoins.com/PHPCoins_V1.0.zip
+
+
+-------------演示------------
+
+http://phpcoins.com
