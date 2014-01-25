@@ -63,6 +63,18 @@ rpcconnect=127.0.0.1 (主机，设置的值要和PHPCoins目录下config.php文�
 
 Apache,PHP,Mysql安装省略，需要注意的是PHP的版本为PHP5.5以上，否则不能正常工作
 
+启动bitcoind
+
+```
+bitcoind -daemon
+```
+
+如果启动bitcoind时遇到以下报错
+
+> locale::facet::_S_create_c_locale name not valid
+
+执行`export LC_ALL="C"`
+[locale::facet::_S_create_c_locale name not valid · Issue #203 · udoprog/c10t](https://github.com/udoprog/c10t/issues/203)
 
 
 --------钱包部署-----------
@@ -71,6 +83,17 @@ Apache,PHP,Mysql安装省略，需要注意的是PHP的版本为PHP5.5以上，�
 
 
 --------PHPCoins安装--------
+
+先创建数据库，否则会500错误
+```
+create database btc;
+```
+
+开启`short_open_tag`
+```
+$ vim /etc/php5/fpm/php.ini
+> short_open_tag On  # Change from Off
+```
 
 下载源码上传到Web主目录，解压，设置主目录权限为允许PHP进程读写，设置config.php文件里的参数，
 
